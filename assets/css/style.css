@@ -1,0 +1,14 @@
+body {
+    background-image: url("../../assets/images/cook-food-kitchen-eat-54455.jpeg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+footer {
+    background-color:  whitesmoke;
+    text-align: center;
+    border: solid 1px lightgray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
