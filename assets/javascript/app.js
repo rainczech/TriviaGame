@@ -9,17 +9,31 @@
 // global variables
 
 // answers
+var time = 5;
 
 var correct = 0;
 var wrong = 0;
 var noResponse = 0;
 
-var question = [
-    new inquiry("Where did pizza originate from?", ["New York City", "Naples, Italy", "Paris, France", "Tokyo, Japan"], "Naples, Italy"),
-    new inquiry("The orignal name for 'processed' cheese is..?" ["embalmed cheese", "fake cheese", "cheese by-product", "pseudo-cheese"], "embalmed cheese")
-
-
-]
+// var questions = {
+//     "q1": "Where did pizza originate from?"
+//     answers1: "a" :"b",
+//          "c":"d",
+//          "e":"f",
+//          "g":"h",
+//         }
+//     },
+//     q2: {'The original name for "processed" cheese is...?':
+//         {"a" :"b",
+//         "c":"d",
+//         "e":"f",
+//         "g":"h",
+//     }
+// };
+        
+// }
+    // new inquiry("Where did pizza originate from?", ["New York City", "Naples, Italy", "Paris, France", "Tokyo, Japan"], "Naples, Italy"),
+    // new inquiry("The orignal name for 'processed' cheese is..?" ["embalmed cheese", "fake cheese", "cheese by-product", "pseudo-cheese"], "embalmed cheese")
 
 
 
@@ -28,6 +42,20 @@ var question = [
 
 
 // functions
+
+function startGame() {
+    // $("button").remove(".choice-button");
+    $("#question-number").text("Click start to begin the game!");
+    playGame();
+
+}
+
+function playGame(){
+    $(".startButton").on("click", function(){
+        $("button").remove(".startButton");
+        // $("button").append(".choice-button");
+    })
+}
 
 function inquiry(text, choice, answer){
     this.text = text;
@@ -67,4 +95,4 @@ function restart(){
 }
 
 // main
-inquire ()
+startGame();
