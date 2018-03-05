@@ -14,7 +14,7 @@ var time = 5;
 var correct = 0;
 var wrong = 0;
 var noResponse = 0;
-var intervalId = 5;
+var intervalId;
 
 var questions = {
     "q1": "Where did pizza originate from?",
@@ -54,7 +54,7 @@ var questions = {
 
 function startGame() {
     // $("button").remove(".choice-button");
-    $("#question-number").text("Click start to begin the game!");
+    $("#question-number").text("Click start to begin!");
     playGame();
 }
 
@@ -66,9 +66,20 @@ function playGame(){
 }
 
 function quest1 (){
-    $("#question-number").text("boo");
+    $("#question-number").text("Time Remaining: 5 seconds");
     $("#question").text(questions.q1);
     intervalId = setInterval(timeCount, 1000);
+}
+
+
+
+function timeCount (){
+    time--;
+    console.log(time);
+    $("#question-number").text("Time Remaining: "+ time + " seconds");
+    if (time ===0){
+        clearInterval(intervalId);
+    }
 }
 
 
