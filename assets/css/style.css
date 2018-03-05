@@ -32,3 +32,7 @@ h1 {
 #question-number {
     text-align: center;
 }
+#question {
+    text-align: center;
+    font-size: 30px;
+}

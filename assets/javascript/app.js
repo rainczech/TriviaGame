@@ -14,15 +14,24 @@ var time = 5;
 var correct = 0;
 var wrong = 0;
 var noResponse = 0;
+var intervalId = 5;
 
-// var questions = {
-//     "q1": "Where did pizza originate from?"
-//     answers1: "a" :"b",
-//          "c":"d",
-//          "e":"f",
-//          "g":"h",
-//         }
-//     },
+var questions = {
+    "q1": "Where did pizza originate from?",
+    "answers1":[{ 
+        "a" :"b",
+         "c":"d",
+         "e":"f",
+         "g":"h",
+        }],
+    "q2": 'The original name for "processed" cheese is....?',
+    "answers2":[{
+         "a":"b",
+         "c":"d",
+         "e":"f",
+         "g":"h",
+    }]
+    };
 //     q2: {'The original name for "processed" cheese is...?':
 //         {"a" :"b",
 //         "c":"d",
@@ -47,23 +56,21 @@ function startGame() {
     // $("button").remove(".choice-button");
     $("#question-number").text("Click start to begin the game!");
     playGame();
-
 }
 
 function playGame(){
     $(".startButton").on("click", function(){
         $("button").remove(".startButton");
-        // $("button").append(".choice-button");
-    })
+        quest1();
+    });
 }
 
-function inquiry(text, choice, answer){
-    this.text = text;
-    this.choice = choice;
-    this.answer = answer;
+function quest1 (){
+    $("#question-number").text("boo");
+    $("#question").text(questions.q1);
+    intervalId = setInterval(timeCount, 1000);
+}
 
-
-};
 
 function correctAnswer(){
     if(userChoice === this.answer){
