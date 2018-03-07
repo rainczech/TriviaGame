@@ -10,28 +10,29 @@
 
 // answers
 var time = 5;
-
+var qCount = 0;
 var correct = 0;
 var wrong = 0;
 var noResponse = 0;
 var intervalId;
 var choices;
 
-var questions = {
-    "q1": "Where did pizza originate from?",
-    "answers1":[{ 
-        "a" :"b",
-         "c":"d",
-         "e":"f",
-         "g":"h",
-        }],
-    // "q2": 'The original name for "processed" cheese is....?',
-    // "answers2":[{
-    //      "a":"b",
-    //      "c":"d",
-    //      "e":"f",
-    //      "g":"h",
-    // }],
+
+var questions = [{
+    "q": "Where did pizza originate from?",
+    "answers":[
+        "New York City, USA",
+        "Naples, Italy",
+        "Paris, France",
+        "Tokyo, Japan"
+        ],
+    "q": 'The original name for "processed" cheese is....?',
+    "answers":[
+         "fake cheese",
+         "cheese by-product",
+         "embalmed cheese",
+         "pseudo-cheese",
+    ],
     // "q3":"Sriracha is a type of hot sauce named after a city located in what country?",
     // "answers2":[{
     //     "a":"b",
@@ -58,51 +59,10 @@ var questions = {
     //     //  answer is england
     //     }],
 
-    // "q6": "What dish, made from crushed Durum wheat, is a staple of western North Africa?",
-    // "answers1":[{ 
-    //     "a" :"b",
-    //      "c":"d",
-    //      "e":"f",
-    //      "g":"h",
-    //     //  answer is couscous
-    //     }],
-    // "q7": "To be legally sold as bourbon, a whiskey's mash must contain at least 51% of what grain?",
-    // "answers1":[{ 
-    //     "a" :"b",
-    //     "c":"d",
-    //     "e":"f",
-    //     "g":"h",
-    //     // answer is corn
-    //     }],
-    // "q8": "When found on a beer bottle, what does the acronym IPA stand for?",
-    // "answers1":[{ 
-    //     "a" :"b",
-    //     "c":"d",
-    //     "e":"f",
-    //     "g":"h",
-    //     // answer is india pale ale
-    //     }],
-    // "q9": "The first McDonald's restaurant opened in which US state?",
-    // "answers1":[{ 
-    //     "a" :"b",
-    //     "c":"d",
-    //     "e":"f",
-    //     "g":"h",
-    //     // answer is California
-    //     }],
-    // "q10": "Pupusas, handmade thick stuffed corn tortillas, are a traditional dish from what country?",
-    // "answers1":[{ 
-    //     "a" :"b",
-    //     "c":"d",
-    //     "e":"f",
-    //     "g":"h",
-    //     // answer is El Salvador
-    //     }],
-
-    };
    
-    // new inquiry("Where did pizza originate from?", ["New York City", "Naples, Italy", "Paris, France", "Tokyo, Japan"], "Naples, Italy"),
-    // new inquiry("The orignal name for 'processed' cheese is..?" ["embalmed cheese", "fake cheese", "cheese by-product", "pseudo-cheese"], "embalmed cheese")
+
+    }]
+   
 
 
 
@@ -121,18 +81,18 @@ function startGame() {
 function playGame(){
     $(".startButton").on("click", function(){
         $("button").remove(".startButton");
-        quest1();
+        quest1(qCount);
     });
 }
 
-function quest1 (){
+function quest1 (count){
     $("#question-number").text("Time Remaining: 5 seconds");
-    $("#question").text(questions.q1);
+    $("#question").text(questions[count].q);
     $(".btncontainer").append('<button class="choiceA btn btn-lg btn-default"></button>');
     $(".btncontainer").append('<button class="choiceA btn btn-lg btn-default"></button>');
     $(".btncontainer").append('<button class="choiceA btn btn-lg btn-default"></button>');
     $(".btncontainer").append('<button class="choiceA btn btn-lg btn-default"></button>');        
-    $(".choiceA").text("boo");
+    $(".choiceA").text(questions.answers[0]);
     intervalId = setInterval(timeCount, 1000);
 }
 
@@ -153,7 +113,10 @@ function rightWrong (){
 
 function correctAnswer(){
     if(userChoice === this.answer){
-    correct++;}
+    correct++;
+    qCount++;
+    quest1(qCount)
+}
 };
 
 function wrongAnswer(){
@@ -168,12 +131,6 @@ function noResponse (){
 }
 
 
-
-
-
-
-
-
 function restart(){
     correct = 0;
     wrong = 0;
@@ -182,3 +139,11 @@ function restart(){
 
 // main
 startGame();
+
+// psuedocode
+// ============
+// create buttons and popular with answer choices in a for loop.
+// create a function with an event listener for either a click or time out to add to the counter to bring up the next question
+// also make the response screens to show the correct response
+//at the end of the game, when the counter has reached the end of the array, have a screen which populates the wrong, correct, and unanswered questions tally. 
+// have a restart button that shuffles the questions without refreshing the page.
